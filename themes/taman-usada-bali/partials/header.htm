@@ -1,0 +1,49 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-main fixed-top">
+    <div class="container">
+        <a href="{{url('/')}}" class="navbar-brand">
+            <img src="{{ 'assets/frontend/images/logo.png'|theme }}" alt="tamanusadabali" class="img-fluid">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavMenu" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="NavMenu">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="{{url('/')}}" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('/about')}}" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('/programs')}}" class="nav-link">Programs</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('/gallery')}}" class="nav-link">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('/contact')}}" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item" id="kolom-hide">
+                    <a href="{{url('/blog')}}" class="nav-link">Blog</a>
+                </li>
+                <li class="nav-item" id="kolom-hide2">
+                    <a href="{{url('/book-page')}}" class="btn btn-book px-4">Book Now</a>
+                </li>
+                <!-- <li class="nav-item" id="kolom-show" style="display: none;">
+                    <form action="#" method="post">
+                        <input id="searchBar" name="search" type="text" class="form-control col-12" placeholder="cari sesuatu..">
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <a href="#" id="toggle-search" class="btn btn-book"><i class="fas fa-search"></i></a>
+                </li> -->
+            </ul>
+        </div>
+
+    </div>
+
+</nav>
+    <!-- End Navbar -->

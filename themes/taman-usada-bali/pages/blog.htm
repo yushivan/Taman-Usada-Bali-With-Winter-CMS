@@ -1,0 +1,79 @@
+title = "Blog"
+url = "/blog/:page?"
+layout = "default"
+is_hidden = 0
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+categoryFilter = "blog"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "about"
+postPage = "detail-blog"
+==
+{% set posts = blogPosts.posts %}
+
+
+<div class="section-header-blog">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="display-0 col-12 col-lg-6">
+                Blog
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section-list-blog">
+    <div class="container">
+        <div class="row" id="more-blog">
+            {% for post in posts %}
+            <div class="col-12 col-lg-4 col-md-6 my-2">
+                <a href="{{ url('/detail-blog/') }}/{{ post.slug }}">
+                    <div class="card-blog" style="background-image: url({{ post.blog_images[0].path }}); background-position: center; background-repeat: no-repeat; background-size: cover;">
+                        {{ post.title }}
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row justify-content-center">
+            {% if posts.lastPage > 1 %}
+            <ul class="pagination">
+                {% if posts.currentPage > 1 %}
+                <li>
+                    <a href="{{ this.page.baseFileName | page({ (blogPosts.pageParam): (posts.currentPage-1) }) }}" class="btn btn-outline-secondary mx-1">&larr; Prev</a>
+                </li>
+                {% endif %}
+
+                {% for page in 1..posts.lastPage %}
+                <li class="{{ posts.currentPage == page ? 'active' : null }}">
+                    <a href="{{ this.page.baseFileName | page({ (blogPosts.pageParam): page }) }}" class="btn btn-outline-secondary mx-1">{{ page }}</a>
+                </li>
+                {% endfor %}
+
+                {% if posts.lastPage > posts.currentPage %}
+                <li>
+                    <a href="{{ this.page.baseFileName | page({ (blogPosts.pageParam): (posts.currentPage+1) }) }}" class="btn btn-outline-secondary mx-1">Next &rarr;</a>
+                </li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+        <center>
+            <button class="btn" id="btn-more-blog">Show More</button>
+        </center>
+    </div>
+</section>
+
+{% partial 'question-form-section' %}
+
+{% put scripts %}
+<script>
+    document.querySelector('#btn-more-blog').addEventListener('click', function(){
+        document.querySelector('#more-blog').style.height='auto';
+        this.style.display='none';
+    });
+</script>
+{% endput %}

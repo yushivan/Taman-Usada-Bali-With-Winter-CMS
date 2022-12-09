@@ -1,0 +1,51 @@
+title = "About"
+url = "/about"
+layout = "default"
+is_hidden = 0
+==
+<?php
+	use Winter\Blog\Models\Post;
+	use Winter\Blog\Models\Category;
+
+	function onStart()
+	{
+		$this['posts'] = Post::where('published', 1)->get();
+		$this['programs'] = Category::where('slug', 'programs')->first();
+		$this['tes'] = Category::where('slug', 'testimonial')->first();
+	}
+?>
+==
+
+<section class="section-header-about">
+	<div class="jumbotron">
+		<div class="container">
+			<div class="display-0 col-12 col-lg-6">
+				About Us
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section-about-us">
+	<div class="container">
+		<p class="about-us">
+			Taman Usada Bali is a wellness destination that promotes the ancient practices of traditional Balinese healing therapies, Usada Bali, yoga, meditation, and herbology to global wellness. We intuitively integrate this unique practice of the local wisdom with the source of the science of life, Ayurveda. It is a truly holistic healing retreat to nourish the ultimate wellness of your being with the experts. We guide you to live a healthy lifestyle through body constitution enhancement.
+			<br><br>
+			Balinese people live equally in two worlds, the seen, Skala, and the unseen, Niskala. In the traditional Balinese healing process, we address both elements. The world of Niskala uniquely involves a spiritual aspect to healing a patient through rituals, offering presentation, purification, chanting mantra, and holy water. All this healing ritual invites you to immerse in the experiential mysticism of traditional Balinese healing therapies.
+		</p>
+		<div class="card-about-us row">
+			<img src="{{ 'assets/frontend/images/about2.png'|theme }}" alt="" class="sisi-kiri col-lg-6 col-12 col-md-5">
+			<div class="sisi-kanan col-12 col-lg-6 col-md-7">
+				<h2>The Mind Master and The Expert</h2>
+				<hr>
+				<p class="text-kanan">
+					Wayan Muliarta is the mind master and the expert in Usada Bali, Ayurveda, and an herbalist, who formulates all the healing rituals and the herb education. He graduated from the University of Hindu Indonesia in Bali, majoring in ancient healing practices. He is from a decent village priest family. A village priest is not only dedicated but also a calling soul to serve his village in spiritualism. Wayan Muliarta receives the healing gift.  
+					<br><br>
+					He currently dedicates his life to his passion for global wellness. And he collaborates with his teammates with expertise in diversity to thrive in this wellness destination.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% partial 'testimonial-section' %}

@@ -1,0 +1,25 @@
+<!-- Testimoni -->
+<section class="section-testimonial">
+    <div class="container">
+        <h3>What people said about Taman Usada</h3>
+        <div class="testimoni-item owl-carousel owl-theme">
+            <!-- Pake Card Testimoni yang ini -->
+            {% for tes in tes.posts %}
+            <div class="card-testimoni">
+                <p class="konten-testimoni">
+                    {{ tes.tes.message }}
+                </p>
+                <a href="{{ tes.tes.link_url }}" class="btn text-secondary text-left">Read more <i class="fas fa-arrow-right"></i></a>
+                <div class="row mt-2">
+                    <div class="mr-auto col-12 col-md-10">
+                        <h4>{{ tes.title }} - {{ tes.published_at|date('M d') }}</h4>
+                    </div>
+                    <img src="{{ tes.tes_images[0].path }}" alt="" class="rounded-circle col-4 col-sm-4 col-md-2 mx-auto img-testimonial">
+                </div>
+            </div>
+            {% endfor %}
+            <!-- end card -->
+        </div>
+    </div>
+</section>
+    <!-- End Testimoni -->

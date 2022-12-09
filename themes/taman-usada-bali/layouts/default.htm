@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taman Usada Bali</title>
+    
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="{{ 'assets/frontend/libraries/OwlCarousel/dist/assets/owl.carousel.min.css'|theme }}">
+    <link rel="stylesheet" href="{{ 'assets/frontend/libraries/OwlCarousel/dist/assets/owl.theme.default.min.css'|theme }}">
+
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="{{ 'assets/frontend/libraries/css/bootstrap.min.css'|theme }}">
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="{{ 'assets/frontend/libraries/fontawesome/css/all.min.css'|theme }}">
+    <!-- Style -->
+    <link rel="stylesheet" href="{{ 'assets/frontend/style/scss/main.css'|theme }}">
+
+    <!-- lightbox -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/css/lightgallery.min.css" integrity="sha512-F2E+YYE1gkt0T5TVajAslgDfTEUQKtlu4ralVq78ViNxhKXQLrgQLLie8u1tVdG2vWnB3ute4hcdbiBtvJQh0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <!-- header -->
+    {% partial 'header' %}
+    <!-- end header -->
+
+    <!-- content -->
+    {% page %}
+    <!-- end content -->
+
+    <!-- footer -->
+    {% partial 'footer' %}
+    <!-- end footer -->
+
+    <script src="{{ 'assets/frontend/libraries/jquery/jquery.js'|theme }}"></script>
+    <script src="{{ 'assets/frontend/libraries/OwlCarousel/dist/owl.carousel.min.js'|theme }}"></script>
+    <script src="{{ 'assets/frontend/libraries/js/bootstrap.bundle.min.js'|theme }}"></script>
+    <script src="{{ 'assets/frontend/libraries/fontawesome/js/all.min.js'|theme }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="{{ 'assets/frontend/script/isotope.pkgd.min.js'|theme }}"></script>
+    <script src="{{ 'assets/frontend/script/function.js'|theme }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/lightgallery.umd.min.js" integrity="sha512-6vFONv+JJD01XArGGqxABRY3Vsm8tKuemThmZYfha9inGIuqPU5OgZP1QizBf0Y3JGPnrofy3jokdebgYNNhEQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ 'assets/app.js'|theme }}"></script>
+    
+    {% placeholder scripts %}
+
+    <script>
+        lightGallery(document.querySelector('.gallery-grid'));
+    </script>
+</body>
+</html>

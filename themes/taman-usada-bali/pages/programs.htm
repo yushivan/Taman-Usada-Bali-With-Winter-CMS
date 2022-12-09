@@ -1,0 +1,246 @@
+title = "Programs"
+url = "/programs"
+layout = "default"
+is_hidden = 0
+==
+<?php
+	use Winter\Blog\Models\Post;
+	use Winter\Blog\Models\Category;
+
+	function onStart()
+	{
+		$this['posts'] = Post::where('published', 1)->get();
+		$this['programs'] = Category::where('slug', 'programs')->first();
+		$this['package'] = Category::where('slug', 'package')->first();
+	}
+?>
+==
+
+<section class="section-header-programs">
+	<div class="jumbotron">
+		<div class="container">
+			<div class="display-0 col-12 col-lg-6">
+				Programs
+			</div>
+			<div class="col-12 col-lg-3 text-center d-lg-none d-xl-none">
+				<a class="btn btn-download">
+					Download info
+				</a>
+			</div>
+			<div class="col-12 col-lg-3 d-none d-lg-block d-xl-block">
+				<a class="btn btn-download">
+					Download info
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section-program-programs">
+
+	<!-- Desktop -->
+	<div class="container d-none d-sm-none d-md-block">
+		{% set i = 0 %}
+		{% for program in programs.posts %}
+		{% if program.programs.position == "top" %}
+		{% if i%2 == 0 %}
+		<div class="row no-gutters my-3 align-items-center" id="{{ program.slug }}">
+			<div class="col-12 col-lg-6 col-xl-6 col-md-6 sisi-kiri">
+				<div class="row">
+					<img src="{{ program.p_images[0].path }}" alt="" class="img-fluid col-12">
+				</div>
+				<div class="row px-1">
+					<img src="{{ program.p_images[1].path }}" class="px-2 rounded-2 col-12 col-lg-6 col-md-6" alt="">
+					<img src="{{ program.p_images[2].path }}" class="px-2 rounded-2 col-12 col-lg-6 col-md-6" alt="">
+				</div>
+			</div>
+			<div class="col-12 col-lg-6 col-xl-6 col-md-6 sisi-kanan">
+				<div class="card-kanan">
+					<h1>{{ program.title }}</h1>
+					<hr class="col-12 col-lg-2 col-md-2">
+					<p class="text-kanan">
+						{{ program.programs.description|raw }}
+					</p>
+				</div>
+			</div>
+		</div>
+		{% else %}
+		<div class="row no-gutters my-3 align-items-center" id="{{ program.slug }}">
+			<div class="col-12 col-lg-6 col-xl-6 col-md-6 kiri-sisi">
+				<div class="card-kiri">
+					<h1>{{ program.title }}</h1>
+					<hr class="col-12 col-lg-2 col-md-2">
+					<p class="text-kanan">
+						{{ program.programs.description|raw }}
+					</p>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6 col-xl-6 col-md-6 kanan-sisi">
+				<div class="row">
+					<img src="{{ program.p_images[0].path }}" alt="" class="img-fluid col-12">
+				</div>
+				<div class="row px-1">
+					<img src="{{ program.p_images[1].path }}" class="px-2 rounded-2 col-12 col-lg-6 col-md-6" alt="">
+					<img src="{{ program.p_images[2].path }}" class="px-2 rounded-2 col-12 col-lg-6 col-md-6" alt="">
+				</div>
+			</div>
+		</div>
+		{% endif %}
+		{% set i=i+1 %}
+		{% endif %}
+		{% endfor %}
+	</div>
+
+	<!-- Mobile -->
+	<div class="container d-sm-block d-md-none">
+		{% for program in programs.posts %}
+		{% if program.programs.position == "top" %}
+		<div class="img-program owl-carousel owl-theme">
+			{% for img in program.p_images %}
+			<img src="{{ img.path }}" alt="" class="col-12">
+			{% endfor %}
+		</div>
+		<div class="card-content-program" id="{{ program.slug }}">
+			<h2>{{ program.title }}</h2>
+			<hr class="col-12 p-0">
+			<p>
+				{{ program.programs.description|raw }}
+			</p>
+		</div>
+		{% endif %}
+		{% endfor %}
+	</div>
+
+</section>
+
+<section class="section-break-programs">
+	<div class="container">
+		<div class="text-programs">
+			<h1>Our healing philosophy is based on the principles of authentic Balinese healing and Ayurveda</h1>
+		</div>
+	</div>
+</section>
+
+<section class="section-program-programs">
+
+	<!-- Desktop -->
+	<div class="container d-none d-sm-none d-md-block">
+		{% set i = 0 %}
+		{% for program in programs.posts %}
+		{% if program.programs.position == "bottom" %}
+		{% if i%2 == 0 %}
+		<div class="row no-gutters my-3 align-items-center" id="{{ program.slug }}">
+			<div class="col-12 col-lg-6 col-xl-6 col-md-6 sisi-kiri">
+				<div class="row">
+					<img src="{{ program.p_images[0].path }}" alt="" class="img-fluid col-12">
+				</div>
+				<div class="row px-1">
+					<img src="{{ program.p_images[1].path }}" class="px-2 rounded-2 col-12 col-lg-6 col-md-6" alt="">
+					<img src="{{ program.p_images[2].path }}" class="px-2 rounded-2 col-12 col-lg-6 col-md-6" alt="">
+				</div>
+			</div>
+			<div class="col-12 col-lg-6 col-xl-6 col-md-6 sisi-kanan">
+				<div class="card-kanan">
+					<h1>{{ program.title }}</h1>
+					<hr class="col-12 col-lg-2 col-md-2">
+					<p class="text-kanan">
+						{{ program.programs.description|raw }}
+					</p>
+				</div>
+			</div>
+		</div>
+		{% else %}
+		<div class="row no-gutters my-3 align-items-center" id="{{ program.slug }}">
+			<div class="col-12 col-lg-6 col-xl-6 col-md-6 kiri-sisi">
+				<div class="card-kiri">
+					<h1>{{ program.title }}</h1>
+					<hr class="col-12 col-lg-2 col-md-2">
+					<p class="text-kanan">
+						{{ program.programs.description|raw }}
+					</p>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6 col-xl-6 col-md-6 kanan-sisi">
+				<div class="row">
+					<img src="{{ program.p_images[0].path }}" alt="" class="img-fluid col-12">
+				</div>
+				<div class="row px-1">
+					<img src="{{ program.p_images[1].path }}" class="px-2 rounded-2 col-12 col-lg-6 col-md-6" alt="">
+					<img src="{{ program.p_images[2].path }}" class="px-2 rounded-2 col-12 col-lg-6 col-md-6" alt="">
+				</div>
+			</div>
+		</div>
+		{% endif %}
+		{% set i=i+1 %}
+		{% endif %}
+		{% endfor %}
+	</div>
+
+	<!-- Mobile -->
+	<div class="container d-sm-block d-md-none">
+		{% for program in programs.posts %}
+		{% if program.programs.position == "bottom" %}
+		<div class="img-program owl-carousel owl-theme">
+			{% for img in program.p_images %}
+			<img src="{{ img.path }}" alt="" class="col-12">
+			{% endfor %}
+		</div>
+		<div class="card-content-program" id="{{ program.slug }}">
+			<h2>{{ program.title }}</h2>
+			<hr class="col-12 p-0">
+			<p>
+				{{ program.programs.description|raw }}
+			</p>
+		</div>
+		{% endif %}
+		{% endfor %}
+	</div>
+
+</section>
+
+<section class="section-activity-programs">
+	<div class="container">
+		<div class="card-activity">
+			<div class="text-activity">
+				<h2>Bali Daily Activities</h2>
+				<hr class="col-8 col-lg-2 col-xl-2 text-center">
+				<p>
+					The activity starts with exploring the Balinese home compound and the local guide will share about the culture, function of the house, and the philosophy of Balinese life. Then, you can discover the meaning behind the simple offerings made every day in Bali as a tangible means of communicating with the gods. Followed by learning to write names in Balinese script. also explains the relationship between Balinese script and health or Balinese healing traditions. Followed by farming activities
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section-program-package">
+	<div class="container">
+		<h2 class="title-package text-center">Program Package</h2>
+		<div class="no-gutters program-package owl-carousel owl-theme">
+			{% for p in package.posts %}
+			<a href="{{url('/book-page')}}/{{ p.slug }}">
+			<div class="text-white row no-gutters package-cards" >
+				<img src="{{ p.package_images[0].path }}" class="package-img">
+				<div class="col-md-12 p-4" style="position: absolute;">
+					<h1>{{ p.title }}</h1>
+					{% for program in p.package_list %}
+					<li>{{ program.name }}</li>
+					{% endfor %}
+				</div>
+			</div>
+			</a>
+			{% endfor %}
+		</div>
+		<div class="card-cta col-12 mx-auto col-md-8 col-lg-12">
+			<div class="row align-items-center">
+				<div class="col-12 col-lg-9 kiri-sisi mx-auto">
+					<p>
+						Don’t miss out, limited spot available daily
+					</p>
+				</div>
+				<div class="col-8 col-lg-3 col-md-6 kanan-sisi mx-auto">
+					<a href="#" class="btn btn-cta btn-block">Book Your Spot Now</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

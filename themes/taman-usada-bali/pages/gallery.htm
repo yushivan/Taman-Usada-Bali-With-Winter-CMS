@@ -1,0 +1,49 @@
+title = "Gallery"
+url = "/gallery"
+layout = "default"
+is_hidden = 0
+==
+<?php
+	use Winter\Blog\Models\Post;
+	use Winter\Blog\Models\Category;
+
+	function onStart()
+	{
+		$this['posts'] = Post::where('published', 1)->get();
+		$this['gallery'] = Category::where('slug', 'gallery')->first();
+	}
+?>
+==
+
+<!-- Header -->
+<section class="section-header-gallery">
+	<div class="jumbotron">
+		<div class="container">
+			<div class="display-0 col-12 col-lg-6">
+				Gallery
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End Header -->
+
+<section class="section-gallery">
+	<div class="container">
+		<div class="gallery-category row justify-content-center">
+			<button data-filter="*" class="btn-category text-center col-12 col-md-2 active">All</button>
+			{% for gallery in gallery.posts %}
+			<button data-filter=".{{ gallery.slug }}" class="btn-category text-center col-12 col-md-2">{{ gallery.title }}</button>
+			{% endfor %}
+		</div>
+
+		<div class="gallery-list">
+			<div class="row gallery-grid">
+				{% for gallery in gallery.posts %}
+				{% for img in gallery.gallery_images %}
+				<img src="{{ img.path }}" alt="" class="gallery-item {{ gallery.slug }} col-4 col-lg-3 col-md-3 px-2">
+				{% endfor %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,164 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+fields:
+
+    title:
+        label: winter.blog::lang.post.title
+        span: left
+        placeholder: winter.blog::lang.post.title_placeholder
+
+    slug:
+        label: winter.blog::lang.post.slug
+        span: right
+        placeholder: winter.blog::lang.post.slug_placeholder
+        preset:
+            field: title
+            type: slug
+
+    toolbar:
+        type: partial
+        path: post_toolbar
+        cssClass: collapse-visible
+
+secondaryTabs:
+    stretch: true
+    fields:
+        # content:
+        #     tab: winter.blog::lang.post.tab_edit
+        #     type: Winter\Blog\FormWidgets\BlogMarkdown
+        #     cssClass: field-slim blog-post-preview
+        #     stretch: true
+        #     mode: split
+
+        categories:
+            tab: winter.blog::lang.post.tab_categories
+            type: relation
+            commentAbove: winter.blog::lang.post.categories_comment
+            placeholder: winter.blog::lang.post.categories_placeholder
+
+        published:
+            tab: winter.blog::lang.post.tab_manage
+            label: winter.blog::lang.post.published
+            span: left
+            type: checkbox
+
+        user:
+            tab: winter.blog::lang.post.tab_manage
+            label: winter.blog::lang.post.published_by
+            span: right
+            type: relation
+            nameFrom: login
+            emptyOption: winter.blog::lang.post.current_user
+
+        published_at:
+            tab: winter.blog::lang.post.tab_manage
+            label: winter.blog::lang.post.published_on
+            span: left
+            cssClass: checkbox-align
+            type: datepicker
+            mode: datetime
+            trigger:
+                action: enable
+                field: published
+                condition: checked
+
+        excerpt:
+            tab: winter.blog::lang.post.tab_manage
+            label: winter.blog::lang.post.excerpt
+            type: textarea
+            size: small
+
+        # featured_images:
+        #     tab: winter.blog::lang.post.tab_manage
+        #     label: winter.blog::lang.post.featured_images
+        #     type: fileupload
+        #     mode: image
+        #     imageWidth: 200
+        #     imageHeight: 200
+
+        # Progams Field
+        'programs[position]':
+            tab: Programs
+            label: Programs Position
+            type: dropdown
+            default: ' '
+            options:
+                ' ': ' '
+                top: Top
+                bottom: Bottom
+        'programs[description]':
+            tab: Programs
+            label: Programs Description
+            type: richeditor
+            size: large
+        p_images:
+            tab: Programs
+            label: Programs Images
+            type: fileupload
+            mode: image
+            imageWidth: 200
+            imageHeight: 200
+
+        # Progam Package Field
+        package_images:
+            tab: Package
+            label: Package Images
+            type: fileupload
+            mode: image
+            imageWidth: 200
+            imageHeight: 200
+        package_list:
+            tab: Package
+            label: List Program Package
+            type: repeater
+            span: full
+            form:
+                fields:
+                    name:
+                        label: Program Name
+                        type: text
+
+
+        # Testimonial Field
+        'tes[link_url]':
+            tab: Testimonial
+            label: Link URL
+            type: text
+            span: full
+        'tes[message]':
+            tab: Testimonial
+            label: Message
+            type: textarea
+            size: small
+        tes_images:
+            tab: Testimonial
+            label: Testimonial Images
+            type: fileupload
+            mode: image
+            imageWidth: 200
+            imageHeight: 200
+
+        # Gallery field
+        gallery_images:
+            tab: Gallery
+            label: Upload Images
+            type: fileupload
+            mode: image
+            imageWidth: 200
+            imageHeight: 200
+
+        # Blog Field
+        blog_images:
+            tab: Blog
+            label: Blog Images
+            type: fileupload
+            mode: image
+            imageWidth: 200
+            imageHeight: 200
+        'blog[content]':
+            tab: Blog
+            label: Content
+            type: richeditor
+            size: large

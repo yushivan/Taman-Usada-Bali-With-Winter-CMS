@@ -1,0 +1,78 @@
+title = "Book Page"
+url = "/book-page/:slug?"
+layout = "default"
+is_hidden = 0
+==
+<?php
+	use Winter\Blog\Models\Post;
+	use Winter\Blog\Models\Category;
+
+	function onStart()
+	{
+		$slug = $this->param('slug');
+		$this['slug'] = $slug;
+		$this['posts'] = Post::where('published', 1)->get();
+		$this['choose'] = Post::where('slug', $slug)->first();
+		$this['programs'] = Category::where('slug', 'programs')->first();
+		$this['package'] = Category::where('slug', 'package')->first();
+	}
+?>
+==
+
+<!-- Header -->
+<section class="section-header-book">
+	<div class="jumbotron">
+		<div class="container">
+			<div class="display-0 col-12 col-lg-6">
+				Book Now
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End Header -->
+
+<div class="section-paragraf-book">
+	<div class="container">
+		<p class="text-book">
+			We focus on quality treatment in dealing with a single healing session process. Our primary goal is beyond our customers’ satisfaction. A single treatment might take a while and needs an enormous of preparation. To block a confirmed space, we request you to book in advance necessarily.
+		</p>
+	</div>
+</div>
+
+<div class="section-form-book">
+	<div class="container">
+		<div class="card shadow">
+			<div class="row no-gutters align-items-center">
+				<div class="p-0 m-0 col-12 col-lg-6 col-md-6">
+					<img src="{{ 'assets/frontend/images/book2.png'|theme }}" alt="" class="img-fluid">
+				</div>
+				<div class="col-12 col-lg-6 col-md-6 p-2">
+					<form action="{{url('/forms/book.php')}}" class="form-book" method="post" enctype="multipart/form-data">
+						<input type="text" name="name" class="form-control my-2" placeholder="Name">
+						<input type="email" name="email" class="form-control my-2" placeholder="E-Mail">
+						<input type="text" name="phone" class="form-control my-2" placeholder="Phone">
+						<select name="program" class="form-control my-2">
+							{% if slug == null %}
+							<option value="" disabled selected>Choose Program</option>
+							{% else %}
+							<option value="{{choose.title}}">{{choose.title}}</option>
+							{% endif %}
+							{% for programs in programs.posts %}
+							{% if programs.slug != slug %}
+							<option value="{{ programs.title }}">{{ programs.title }}</option>
+							{% endif %}
+							{% endfor %}
+							{% for package in package.posts %}
+							{% if package.slug != slug %}
+							<option value="{{ package.title }}">{{ package.title }}</option>
+							{% endif %}
+							{% endfor %}
+						</select>
+						<textarea name="message" class="form-control my-2" id="" placeholder="Message" cols="30" rows="10"></textarea>
+						<button type="submit" class="btn btn-book btn-block">Send</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

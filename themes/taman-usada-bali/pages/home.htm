@@ -1,0 +1,97 @@
+title = "Home"
+url = "/"
+layout = "default"
+is_hidden = 0
+==
+<?php
+	use Winter\Blog\Models\Post;
+	use Winter\Blog\Models\Category;
+
+	function onStart()
+	{
+		$this['posts'] = Post::where('published', 1)->get();
+		$this['programs'] = Category::where('slug', 'programs')->first();
+		$this['tes'] = Category::where('slug', 'testimonial')->first();
+	}
+?>
+==
+
+<!-- Header -->
+<section class="section-header">
+	<div class="jumbotron">
+		<div class="container">
+			<div class="display-0 col-12 col-lg-10 col-md-12 col-sm-12">
+				<h3 class="display-1">Local Wisdom For Global Wellness</h3>
+				<div class="col-12 col-lg-8 col-md-12 col-sm-12 pl-0">
+					<p class="pf-1">Designed for seekers to be healed by the ancient healing therapies</p>
+				</div>
+				<a href="#" class="btn px-4 py-3 btn-home">DISCOVER OUR PROGRAMS</a>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- ENd Header -->
+
+<!-- Welcome to Taman Usada Bali -->
+<section class="section-welcome">
+	<div class="row no-gutters">
+		<div class="col-12 col-lg-5 sisi-kiri">
+			<img src="{{ 'assets/frontend/images/homepage2.png'|theme }}" alt="" class="img-fluid col-12">
+		</div>
+		<div class="card-welcome col-12 col-lg-7">
+			<div class="welcome-content">
+				<h2>Welcome to Taman Usada Bali</h2>
+				<hr class="col-12 col-lg-4">
+				<p>Taman Usada Bali is a wellness destination purposely designed for seekers to get healed by the ancient healing therapies that the locals still practice nowadays on the island of Bali. The invaluable local wisdom the enlightened beings need to preserve for the global wellness of a healthy lifestyle in the world of disruption.</p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End Welcome -->
+
+<!-- Where are we? -->
+<section class="section-where">
+	<div class="container">
+		<div class="where-content col-12 col-lg-6 col-xl-6">
+			<h1>Where are we?</h1>
+			<hr class="col-12 col-lg-3">
+			<p>
+				Nestled in the village of Desa Baru, Banjar Baru, Tabanan Bali, popularly known as the rice barn of Bali Island, where Jati Luwih’s rice terraced paddies, the UNESCO heritage, well-known tourist destination is within a few minute’s drive away. The indigenous people strongly preserve their living traditions based on Balinese Hinduism ways of life. Rituals are an everyday scene. The vibe of spirituality resonates with the daily locals’ living.
+			</p>
+		</div>
+	</div>
+</section>
+<!-- End Where are we? -->
+
+<!-- Programs -->
+<section class="section-programs">
+	<div class="container">
+		<h2>Programs</h2>
+		<div class="row align-item-center">
+			<a href="{{url('/programs')}}" class="btn text-secondary text-left col-6 tx-0">
+				See all Program <i class="fas fa-arrow-right"></i>
+			</a>
+			<div class="col-6 text-right">
+			<!-- 
+                <button class='btn btn-outline-secondary px-4 bt-prev'><i class='fas fa-arrow-left'></i></button>
+                <button class='btn btn-outline-secondary px-4 bt-prev'><i class='fas fa-arrow-right'></i></button>
+            -->
+			</div>
+		</div>
+
+		<div class="programs-item owl-carousel owl-theme owl-loaded">
+			{% for program in programs.posts %}
+			<a href="{{url('/programs')}}#{{program.slug}}" class="text-decoration-none">
+			<div class="card-program" style="background-image: linear-gradient(to top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 50%), url({{ program.p_images[0].path }});">
+				<h5 class="card-title text-uppercase">{{ program.title }}</h5>
+			</div>
+			</a>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+<!-- End Programs-->
+
+{% partial 'testimonial-section' %}
+
+{% partial 'instagram-section' %}

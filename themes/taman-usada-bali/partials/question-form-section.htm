@@ -1,0 +1,18 @@
+<section class="section-form-contact py-5">
+	<div class="container">
+		<div class="col-12 col-lg-8 mx-auto text-center">
+			<h3>Do you have any questions?</h3>
+		</div>
+		<div class="col-12 col-lg-8 mx-auto">
+			<p class="text-form-contact">
+				If you wish to contact us after obtaining some insights on our website, you may use the contact form below. Write your message clearly about what sort of treatments we could help you with. Our team will get back to you immediately.
+			</p>
+		</div>
+		<form action="{{url('/forms/contact.php')}}" method="post" enctype="multipart/form-data">
+			<input type="text" name="name" id="" class="form-control my-2 col-12 col-lg-8 col-md-8 mx-auto" placeholder="Name">
+			<input type="email" name="email" id="" class="form-control my-2 col-12 col-lg-8 col-md-8 mx-auto" placeholder="Email">
+			<textarea name="message" id="" rows="10" my-2 class="form-control col-12 col-lg8 col-md-8 mx-auto" placeholder="Message"></textarea>
+			<button type="submit" class="btn btn-block btn-submit-form-contact my-2 col-12 col-lg-8 col-md-8 mx-auto">Send</button>
+		</form>
+	</div>
+</section>

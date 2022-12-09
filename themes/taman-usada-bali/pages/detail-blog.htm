@@ -1,0 +1,60 @@
+title = "Detail Blog"
+url = "/detail-blog/:slug?"
+layout = "default"
+is_hidden = 0
+==
+<?php
+	use Winter\Blog\Models\Post;
+	use Winter\Blog\Models\Category;
+
+	function onStart()
+	{
+		$slug = $this->param('slug');
+		$this['slug'] = $slug;
+		$this['posts'] = Post::where('published', 1)->get();
+		$this['choose'] = Post::where('slug', $slug)->first();
+		$this['blog'] = Category::where('slug', 'blog')->first();
+	}
+?>
+==
+
+<section class="section-header-blog">
+	<div class="jumbotron">
+		<div class="container">
+			<div class="display-0 col-12 text-uppercase">
+				{{ choose.title }}
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section-blog-content">
+	<div class="container">
+		<div class="row no-gutters">
+			<div class="col-md-12">
+				{{ choose.blog.content|raw }}
+			</div>
+			<div class="col-md-12 mt-3 text-right text-secondary">
+				Published at {{ choose.published_at|date('M d, Y') }}
+			</div>
+		</div>
+		
+	</div>
+</section>
+
+<section class="section-recent-blog">
+	<div class="container">
+		<h2>Recent Blogs</h2>
+		<div class="recent-blogs owl-carousel owl-theme">
+			{% for blog in blog.posts %}
+			{% if blog.slug != choose.slug %}
+			<a href="{{url('/detail-blog')}}/{{ blog.slug }}" class="text-decoration-none">
+				<div class="card-recent-blogs" style="background-image: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%), url({{ blog.blog_images[0].path }});">
+					<h5 class="card-title text-uppercase">{{ blog.title }}</h5>
+				</div>
+			</a>
+			{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</section>
